@@ -1,4 +1,4 @@
-#include "struct.c"
+
 
 typedef struct {
   char*nom;
