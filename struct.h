@@ -1,4 +1,4 @@
-#include "struct.c"
+
 
 typedef struct { char* nom; double x,y ; L_ARC voisins;} T_SOMMET ;
 
