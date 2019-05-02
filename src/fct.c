@@ -1,10 +1,3 @@
-#include "struct.h"
-
-int main (){
-
-
-}
-
 
 GRAPHE lectureFichier(char* fileName){
     FILE f = fopen(fileName,rt);
