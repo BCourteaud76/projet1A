@@ -2,6 +2,6 @@
 #define FCT_H
 
 #include "struct.h"
-GRAPHE lectureFichier(char* fileName);
+void lectureFichier(char* fileName, GRAPHE* graph);
 
 #endif

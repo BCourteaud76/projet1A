@@ -1,5 +1,5 @@
 
-GRAPHE lectureFichier(char* fileName){
+void lectureFichier(char* fileName,GRAPHE* graph){
     FILE f = fopen(fileName,rt);
     int nl,nbArc;
     fsanf(f,"%lf %lf", &nl, &nbArc);
@@ -9,7 +9,7 @@ GRAPHE lectureFichier(char* fileName){
     double x,y;
     char l[4],n[40];
     for(i=0; i<nl; i++){
-      fsanf(f,"%d %lf %lf %s %s", &d, &(graph[i].x), &(graph[i].y), l, n);
+      fsanf(f,"%d %lf %lf %s %s", &d, &(graph[i].x), &(graph[i].y), &(graph[i].ligne), n);
       int j;
       for (j=0; j<3;j++){
         graph[i].ligne[j]=l[j];
