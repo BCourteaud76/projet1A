@@ -1,4 +1,5 @@
-
+#ifndef _STRUCT
+#define _STRUCT
 
 
 
@@ -12,3 +13,4 @@ typedef struct {
   double x,y ;
   L_ARC voisins;
 } T_SOMMET ;
+#endif
