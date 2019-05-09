@@ -1,5 +1,4 @@
 #include "liste.h"
-#include "carte.h"
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -7,7 +6,7 @@ Liste creer_liste() { return NULL; }
 
 int liste_vide(Liste l) { return l==NULL; }
 
-Liste ajout_tete(CARTE c, Liste l) { Liste p=NULL;
+Liste ajout_tete(ELEMENT c, Liste l) { Liste p=NULL;
   if ( (p=calloc( 1, sizeof (*p)))!=NULL)  { p->val=c; p->suiv=l; }
   return p;
 }
@@ -34,7 +33,7 @@ Liste liberer_liste(Liste l) {
   return l;
 }
 
-Liste ajout_queue(CARTE carte, Liste l) {
+Liste ajout_queue(ELEMENT carte, Liste l) {
 
   if (liste_vide(l)) {
 		return ajout_tete(carte, l);
@@ -84,7 +83,7 @@ FONCTION : recherche_liste
 DESCRIPTION : recherche un élément du type carte dans une liste
 ----------------------------------------------------------------------------
 PARAMETERS :
-  - CARTE c
+  - ELEMENT c
   - Liste l
 ----------------------------------------------------------------------------
 RETURN : retourne le pointeur sur le maillon contenant la carte si cette dernière
@@ -92,7 +91,7 @@ RETURN : retourne le pointeur sur le maillon contenant la carte si cette derniè
 ----------------------------------------------------------------------------
 */
 
-Liste recherche_liste(CARTE c, Liste l) {
+Liste recherche_liste(ELEMENT c, Liste l) {
   Liste p = l;
 
   while (!liste_vide(p)){
