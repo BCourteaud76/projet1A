@@ -1,5 +1,6 @@
+#include<math.h>
 
-void lectureFichier(char* fileName,GRAPHE* graph){
+void lectureFichier(char* fileName,T_SOMMET* graph){
     FILE f = fopen(fileName,rt);
     int nl,nbArc;
     fsanf(f,"%lf %lf", &nl, &nbArc);
@@ -25,4 +26,9 @@ void lectureFichier(char* fileName,GRAPHE* graph){
       fsanf(f,"%d %d %lf", &origine, &destination, &longueur);
       ajout_queue(graph[origine].voisins, destination, longueur); //a definir proprement
     }
+}
+
+
+double distancemetre(T_SOMMET a, T_SOMMET b){
+  return sqrt(a.x*b.x + a.y+b.y);
 }
