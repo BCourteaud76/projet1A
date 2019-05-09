@@ -6,8 +6,8 @@ Liste creer_liste() { return NULL; }
 
 int liste_vide(Liste l) { return l==NULL; }
 
-Liste ajout_tete(ELEMENT c, Liste l) { Liste p=NULL;
-  if ( (p=calloc( 1, sizeof (*p)))!=NULL)  { p->val=c; p->suiv=l; }
+Liste ajout_tete(ELEMENT arc, Liste l) { Liste p=NULL;
+  if ( (p=calloc( 1, sizeof (*p)))!=NULL)  { p->val.arrivee=arc.arrivee; p->val.cout=arc.cout; p->suiv=l; }
   return p;
 }
 
@@ -20,11 +20,12 @@ Liste supprimer_tete(Liste l) {
   }
   return NULL;
 }
-
+/*
 void visualiser_liste(Liste l) { Liste p=NULL;
   for (p=l; !liste_vide(p); p=p->suiv) affiche_carte_visible(&(p->val));
   puts("");
 }
+*/
 
 Liste liberer_liste(Liste l) {
   if (!liste_vide(l)) {
@@ -33,14 +34,14 @@ Liste liberer_liste(Liste l) {
   return l;
 }
 
-Liste ajout_queue(ELEMENT carte, Liste l) {
+Liste ajout_queue(ELEMENT arc, Liste l) {
 
   if (liste_vide(l)) {
-		return ajout_tete(carte, l);
+		return ajout_tete(arc, l);
 	}
 	Liste p=l, u = NULL;
 	Liste q;
-  if ( (q=calloc( 1, sizeof (*q)))!=NULL)  { q->val=carte;}
+  if ( (q=calloc( 1, sizeof (*q)))!=NULL)  { q->val=arc;}
 
 	while (!liste_vide(p)) {
     u = p;
@@ -91,12 +92,12 @@ RETURN : retourne le pointeur sur le maillon contenant la carte si cette derniè
 ----------------------------------------------------------------------------
 */
 
-Liste recherche_liste(ELEMENT c, Liste l) {
+Liste recherche_liste(ELEMENT arc, Liste l) {
   Liste p = l;
 
   while (!liste_vide(p)){
 
-    if( p->val.rang == c.rang && p->val.couleur == c.couleur && p->val.visible == c.visible){//il faudrait rajouter la condition de visibilité
+    if( p->val.arrivee == arc.arrivee&& p->val.cout == arc.cout){
 
         return p;
     }

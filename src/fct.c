@@ -1,16 +1,22 @@
-#include<math.h>
+#include <math.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include "struct.h"
+#include "liste.h"
 
-void lectureFichier(char* fileName,T_SOMMET* graph){
-    FILE f = fopen(fileName,rt);
+void lectureFichier(char* fileName){
+    FILE* f = fopen(fileName,"r");
     int nl,nbArc;
-    fsanf(f,"%lf %lf", &nl, &nbArc);
-    T_SOMMET* graph=calloc(nl, sizeof(T_SOMMET));
-    fgets(f);
+    fscanf(f,"%d %d", &nl, &nbArc);
+    T_SOMMET* graph;
+    graph=calloc(nl, sizeof(T_SOMMET)*nl);
+    //fgets(f);
     int i,d;
-    double x,y;
-    char l[4],n[40];
+    char n[40];
+    fscanf(f,"%s",n);
     for(i=0; i<nl; i++){
-      fsanf(f,"%d %lf %lf %s %s", &d, &(graph[i].x), &(graph[i].y), &(graph[i].ligne), n);
+      fscanf(f,"%d %lf %lf %s %s", &d, &(graph[i].x), &(graph[i].y), &(graph[i].ligne[0]), &(graph[i].nom[0]));
+      /*
       int j;
       for (j=0; j<3;j++){
         graph[i].ligne[j]=l[j];
@@ -18,17 +24,20 @@ void lectureFichier(char* fileName,T_SOMMET* graph){
       for (j=0; j<40;j++){
         graph[i].nom[j]=n[j];
       }
+      */
     }
-    fgets(f);
-    int origine,destination;
-    double longueur;
+
+    fscanf(f,"%s",n);
+    int origine;
     for(i=0; i<nbArc; i++){
-      fsanf(f,"%d %d %lf", &origine, &destination, &longueur);
-      ajout_queue(graph[origine].voisins, destination, longueur); //a definir proprement
+      T_ARC voisins;
+      fscanf(f,"%d %d %lf", &origine, &(voisins.arrivee), &(voisins.cout));
+      ajout_queue( voisins, graph[origine].voisins);
     }
+
 }
 
 
-double distancemetre(T_SOMMET a, T_SOMMET b){
-  return sqrt(a.x*b.x + a.y+b.y);
+double distancemetre(T_SOMMET* a, T_SOMMET* b){
+  return sqrt(a->x*b->x + a->y+b->y);
 }
