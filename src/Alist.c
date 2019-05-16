@@ -52,8 +52,24 @@ int taille_Aliste(ALIST l){
   }
   return n;
 }
+
+/*
+----------------------------------------------------------------------------
+FONCTION : augmenteTas
+----------------------------------------------------------------------------
+DESCRIPTION : elle ajoute un élément à une liste qui respecte la structure
+de tas
+----------------------------------------------------------------------------
+PARAMETERS :
+  - ALIST l
+  - NODE noeud
+----------------------------------------------------------------------------
+RETURN : retourne une liste (ALIST) formant un tas contenant le nouveau noeud
+----------------------------------------------------------------------------
+*/
+
 ALIST augmenteTas(ALIST l, NODE noeud){
   if (!Aliste_vide(l)){
-    
+
   }
 }

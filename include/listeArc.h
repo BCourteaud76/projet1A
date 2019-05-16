@@ -17,4 +17,5 @@ Liste ajout_queue(ELEMENT arc, Liste l);
 Liste copie(Liste l);
 Liste concat(Liste l1, Liste l2);
 Liste supprimen(int n, Liste l);
+
 #endif
