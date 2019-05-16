@@ -3,7 +3,7 @@
 #include "struct.h"
 #include "graphe.h"
 double distanceEuclidienne(T_SOMMET a, T_SOMMET b);
-ALIST Astar(GRAPHE graph, nb_sommets, int d, int s);
+ALIST Astar(GRAPHE graph, nb_sommets, unsigned double d,unsigned double s);
 
 
 #endif
