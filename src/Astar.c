@@ -48,6 +48,8 @@ ALIST Astar(GRAPHE graph,unsigned double d, unsigned double a){
   {
     s = node2.indice; //s devient le dernier sommet ajouté dans LF
     L_ARC listeArc=NULL;
+
+    //parcours de tout les voisins :
     for(listeArc = graph[s].voisins; !liste_vide(listeArc); listeArc = listeArc->suiv)
     {
       node1.indice = (listeArc->val).arrivee;
@@ -55,12 +57,12 @@ ALIST Astar(GRAPHE graph,unsigned double d, unsigned double a){
       node1.weight = (listeArc->val).cout + node2.weight;
       node1.path = graph[s];
       node1.cbwght = node1.weight + distanceEuclidienne(graph[node1.indice], graph[a]);
-      LO = seekAndReplace(LO, node1);
+      LO = augmenteLO(LO, node1);
     }
-    LO = augmenteTas(LO,node1);
-    node1 = descendreTas(LO);
-    node2 = node1;
-    LF = Aliste_ajout_tete(node1, LF );
+    //mise à jour
+    node2 = LO->val;
+    LF = Aliste_ajout_tete(node2, LF );
+    LO = Aliste_supprimer_tete(LO);
   }
   return LF;
 }

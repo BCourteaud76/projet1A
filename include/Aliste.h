@@ -7,7 +7,7 @@ typedef struct node{
   unsigned double indice;
   double weight;
   T_SOMMET path;
-  double cbwght;
+  double cbwght; //combined weight
 } NODE;
 
 typedef struct Alist{ NODE val; struct Alist *suiv;} *ALIST;
@@ -22,9 +22,7 @@ int taille_Aliste(ALIST l);
 void visualiser_Aliste(ALIST l);
 ALIST liberer_Aliste(ALIST l);
 
-ALIST augmenteTas(ALIST l, NODE noeud );
-NODE descendreTas(ALIST l);
-ALIST seekAndReplace(ALIST l, NODE element);
+ALIST augmenteLO(ALIST LO, NODE noeud);
 
 
 #endif
