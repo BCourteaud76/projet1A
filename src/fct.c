@@ -4,7 +4,7 @@
 #include "struct.h"
 #include "liste.h"
 
-void lectureFichier(char* fileName){
+T_SOMMET* lectureFichier(char* fileName){
     FILE* f = fopen(fileName,"r");
     int nl,nbArc;
     fscanf(f,"%d %d", &nl, &nbArc);
@@ -34,7 +34,7 @@ void lectureFichier(char* fileName){
       fscanf(f,"%d %d %lf", &origine, &(voisins.arrivee), &(voisins.cout));
       ajout_queue( voisins, graph[origine].voisins);
     }
-
+    return graph;
 }
 
 
