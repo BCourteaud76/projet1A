@@ -2,20 +2,27 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "struct.h"
-#include "liste.h"
+#include "listeArc.h"
 
-T_SOMMET* lectureFichier(char* fileName){
-    FILE* f = fopen(fileName,"r");
-    int nl,nbArc;
-    fscanf(f,"%d %d", &nl, &nbArc);
-    T_SOMMET* graph;
-    graph=calloc(nl, sizeof(T_SOMMET)*nl);
-    //fgets(f);
-    int i,d;
-    char n[40];
-    fscanf(f,"%s",n);
+T_SOMMET * lectureFichier(char* fileName, unsigned long *len){
+    FILE* f = fopen(fileName,"rt");
+    unsigned long nl,nbArc;
+    fscanf(f,"%lu %lu", &nl, &nbArc);
+    printf("nl = %lu ; nbArc = %lu\n", nl, nbArc);
+    T_SOMMET *graph=calloc(nl, sizeof(T_SOMMET));
+    unsigned long i,d;
+    *len = nl;
+    // rejet d'une ligne dans le document
+    char str[60];
+    fgets(str,59,f);
+    fgets(str,59,f);
+    //fscanf(f,"%s",str);   => il faudrait en faire 3 pour supprimer tt les mots
+    printf(" ligne rejetée : '%s'\n", str);
+    puts("indices sommets :");
     for(i=0; i<nl; i++){
-      fscanf(f,"%d %lf %lf %s %s", &d, &(graph[i].x), &(graph[i].y), &(graph[i].ligne[0]), &(graph[i].nom[0]));
+      fscanf(f,"%lu %lf %lf %s", &d, &(graph[i].x), &(graph[i].y), &(graph[i].ligne[0]));
+      fgets(graph[i].nom,80,f);
+      //printf("indice : %lu , x : %lf y : %lf ligne '%s' nom '%s'\n",d, graph[i].x, graph[i].y, graph[i].ligne, graph[i].nom );
       /*
       int j;
       for (j=0; j<3;j++){
@@ -27,12 +34,16 @@ T_SOMMET* lectureFichier(char* fileName){
       */
     }
 
-    fscanf(f,"%s",n);
-    int origine;
+    //fscanf(f,"%s",str);
+    fgets(str,59,f);
+    printf(" ligne rejetée : '%s'\n", str);
+    // !!! probleme ici origine n'est jamais mis à jour, pk ?
+    unsigned long origine=0;
     for(i=0; i<nbArc; i++){
       T_ARC voisins;
-      fscanf(f,"%d %d %lf", &origine, &(voisins.arrivee), &(voisins.cout));
-      ajout_queue( voisins, graph[origine].voisins);
+      fscanf(f,"%lu %lu %lf", &origine, &(voisins.arrivee), &(voisins.cout));
+      //printf("%lu %lu %lf\n",origine, voisins.arrivee, voisins.cout);
+      graph[origine].voisins = ajout_tete( voisins, graph[origine].voisins);
     }
     return graph;
 }
@@ -40,4 +51,11 @@ T_SOMMET* lectureFichier(char* fileName){
 
 double distancemetre(T_SOMMET* a, T_SOMMET* b){
   return sqrt(a->x*b->x + a->y+b->y);
+}
+
+void afficheGraphe(T_SOMMET*graph, unsigned long len){
+  unsigned long i;
+  for(i=0; i<len; i++){
+    printf("%s %lf %lf %s\n", graph[i].ligne, graph[i].x, graph[i].y,  graph[i].nom);
+  }
 }

@@ -3,7 +3,7 @@
 
 #include "struct.h"
 
-void lectureFichier(char* fileName);
+T_SOMMET *lectureFichier(char* fileName, unsigned long *len);
 double distancemetre(T_SOMMET a, T_SOMMET b);
-
+void afficheGraphe(T_SOMMET*graph, unsigned long len);
 #endif

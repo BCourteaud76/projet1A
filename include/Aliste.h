@@ -2,9 +2,10 @@
 #define ALIST_H
 #define namelength 100
 
+#include "struct.h"
 typedef struct node{
-  char *name //pointeur vers une adresse résevé dans une cellule T_SOMMET du graphe
-  unsigned double indice;
+  char *name ;//pointeur vers une adresse résevé dans une cellule T_SOMMET du graphe
+  unsigned long indice;
   double weight;
   T_SOMMET path;
   double cbwght; //combined weight

@@ -1,7 +1,6 @@
-#include "liste.h"
 #include <stdio.h>
 #include <stdlib.h>
-
+#include "listeArc.h"
 Liste creer_liste() { return NULL; }
 
 int liste_vide(Liste l) { return l==NULL; }

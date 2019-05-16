@@ -3,7 +3,7 @@
 
 
 
-typedef struct { int arrivee; double cout; } T_ARC ;
+typedef struct { unsigned long arrivee; double cout; } T_ARC ;
 
 typedef struct lsucc { T_ARC val; struct lsucc* suiv ; }* L_ARC;
 

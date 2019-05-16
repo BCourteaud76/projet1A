@@ -4,5 +4,4 @@
 
 typedef T_SOMMET *GRAPHE;
 
-
 #endif
