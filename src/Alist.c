@@ -70,6 +70,9 @@ RETURN : retourne une liste (ALIST) formant un tas contenant le nouveau noeud
 
 ALIST augmenteTas(ALIST l, NODE noeud){
   if (!Aliste_vide(l)){
-
+    int n = 0;
+    n = taille_Aliste(l);
+    
   }
+  retrun l;
 }
