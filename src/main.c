@@ -8,15 +8,13 @@
 
 int main (){
   GRAPHE graphe= NULL;
-  //ALIST path = NULL;
+  ALIST path = NULL;
   unsigned long len =0;
   graphe = lectureFichier("metroetu.csv", &len);
-  printf("+++ WESH ALORS %s+++\n", graphe[0].nom);
-  printf("len = %lu\n", len);
-  afficheGraphe(graphe, len);
+  //afficheGraphe(graphe, len);
 
-  //path = Astar(graphe, 10 , 100);
-  //visualiser_Aliste(path);
+  path = Astar(graphe, 0 , 676);
+  visualiser_Aliste(path);
   free(graphe);
   return 0;
 }
