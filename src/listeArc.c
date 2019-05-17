@@ -1,6 +1,7 @@
-#include "liste.h"
 #include <stdio.h>
 #include <stdlib.h>
+#include "struct.h"
+#include "listeArc.h"
 
 Liste creer_liste() { return NULL; }
 
@@ -106,6 +107,15 @@ Liste recherche_liste(ELEMENT arc, Liste l) {
   return NULL;
 }
 
+Liste copie(Liste l) {
+  Liste p = l, q = creer_liste();
+	while (!liste_vide(p)) {
+		q=ajout_queue(p->val, q);
+		p=p->suiv;
+	}
+	return q;
+}
+
 Liste concat(Liste l1, Liste l2) {
   if (liste_vide(l1)) {
 		return l2;
@@ -123,15 +133,6 @@ Liste concat(Liste l1, Liste l2) {
 	}
 	q->suiv=l2;
 	return res;
-}
-
-Liste copie(Liste l) {
-  Liste p = l, q = creer_liste();
-	while (!liste_vide(p)) {
-		q=ajout_queue(p->val, q);
-		p=p->suiv;
-	}
-	return q;
 }
 
 Liste supprimen(int n, Liste l) {

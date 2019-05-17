@@ -1,3 +1,4 @@
+/*
 #include <stdlib.h>
 #include <stdio.h>
 #include "Aliste.h"
@@ -54,6 +55,7 @@ int taille_Aliste(ALIST l){
 }
 ALIST augmenteTas(ALIST l, NODE noeud){
   if (!Aliste_vide(l)){
-    
+
   }
 }
+*/

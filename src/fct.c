@@ -2,14 +2,21 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "struct.h"
-#include "liste.h"
+#include "Aliste.h"
+#include "listeArc.h"
 
 T_SOMMET* lectureFichier(char* fileName){
-    FILE* f = fopen(fileName,"r");
+    FILE* f = fopen(fileName,"r+");
+    if (f==NULL){
+      printf("erreur lors de l'ouverture du fichier\n");
+      exit(1);
+    }
     int nl,nbArc;
+    printf("&nl : %p \n",&nl);
     fscanf(f,"%d %d", &nl, &nbArc);
+    printf("nl : %d \n",nl);
     T_SOMMET* graph;
-    graph=calloc(nl, sizeof(T_SOMMET)*nl);
+    graph= (T_SOMMET*) calloc(nl, sizeof(T_SOMMET)*nl);
     //fgets(f);
     int i,d;
     char n[40];

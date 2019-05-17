@@ -1,3 +1,4 @@
+
 #include <math.h>
 #include <stdlib.h>
 #include "struct.h"
@@ -26,6 +27,7 @@ RETURN : La liste de type ALIST (voir algo.h) contenant tout les sommets
 retenus, on en extrait le plus court chemin
 ----------------------------------------------------------------------------
 */
+/*
 ALIST Astar(GRAPHE graph,unsigned int d, unsigned int a){
   //liste contenant les noeuds visités
   ALIST LF = creer_Aliste();
@@ -41,7 +43,7 @@ ALIST Astar(GRAPHE graph,unsigned int d, unsigned int a){
   LF = Aliste_ajout_tete(node ,LF );
   L_ARC listeArc=NULL;
   for(listeArc = graph[d].voisins; !liste_vide(listeArc); listeArc = listeArc->suiv){
-    
+
   }
 
 
@@ -50,3 +52,4 @@ ALIST Astar(GRAPHE graph,unsigned int d, unsigned int a){
 
   }
 }
+*/

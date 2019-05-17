@@ -4,6 +4,7 @@
 #include "struct.h"
 
 typedef T_ARC ELEMENT;
+typedef L_ARC Liste;
 
 Liste creer_liste();
 int liste_vide(Liste l);
