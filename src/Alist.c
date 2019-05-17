@@ -117,7 +117,7 @@ ALIST augmenteLO(ALIST LO, NODE noeud){
       p->val = noeud;
       puts("+++++++++++");
     }
-    //traitement du cas ou il n'y a qu'un élément dans la liste
+    //traitement du cas ou il n'y a qu'un élément dans la lis
     if(Aliste_vide(p->suiv)){
       puts("#4");
       ALIST h = creer_Aliste();

@@ -53,7 +53,7 @@ ALIST Astar(GRAPHE graph,unsigned long d, unsigned long a){
   {
     s = node2.indice; //s devient le dernier sommet ajouté dans LF
     L_ARC listeArc=NULL;
-    puts("horq boucle");
+    puts("hors boucle");
     //parcours de tout les voisins :
     for(listeArc = graph[s].voisins; !liste_vide(listeArc); listeArc = listeArc->suiv)
     {

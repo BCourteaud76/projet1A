@@ -16,5 +16,4 @@ int main (){
   path = Astar(graphe, 0 , 676);
   visualiser_Aliste(path);
   free(graphe);
-  return 0;
 }
