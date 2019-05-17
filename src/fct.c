@@ -6,6 +6,10 @@
 
 T_SOMMET * lectureFichier(char* fileName, unsigned long *len){
     FILE* f = fopen(fileName,"rt");
+    if (f==NULL){
+      printf("erreur lors de l'ouverture du fichier : %s \n", fileName);
+      exit(1);
+    }
     unsigned long nl,nbArc;
     fscanf(f,"%lu %lu", &nl, &nbArc);
     printf("nl = %lu ; nbArc = %lu\n", nl, nbArc);

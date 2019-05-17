@@ -40,7 +40,7 @@ ALIST Aliste_supprimer_tete(ALIST l){
 }
 ALIST liberer_Aliste(ALIST l){
   ALIST p = creer_Aliste();
-  for(l; !Aliste_vide(l); l = l->suiv){
+  for(l=l; !Aliste_vide(l); l = l->suiv){
     p = l;
     l = l->suiv;
     free(p);
