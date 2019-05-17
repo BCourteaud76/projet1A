@@ -1,4 +1,5 @@
 #include <math.h>
+#include <stdio.h>
 #include <stdlib.h>
 #include "struct.h"
 #include "Aliste.h"
@@ -42,7 +43,7 @@ ALIST Astar(GRAPHE graph,unsigned long d, unsigned long a){
   node2.weight = 0;
   node2.path = graph[d];
   node2.cbwght = distanceEuclidienne(graph[d], graph[a]);
-
+  printf("%p",LF);
   LF = Aliste_ajout_tete(node2,LF); //ajout du noeud de départ dans la liste finale
 
   while(node2.indice != a)

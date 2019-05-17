@@ -9,7 +9,9 @@ int Aliste_vide(ALIST l){
 }
 
 ALIST Aliste_ajout_tete(NODE node, ALIST l){
+  printf("1");
   ALIST p = creer_Aliste();
+  printf("2");
   if( (p=calloc(1, sizeof (ALIST*))) != NULL){
     p->val = node;
     p->suiv = l;
