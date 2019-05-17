@@ -9,12 +9,12 @@
 int main (){
   GRAPHE graphe= NULL;
   ALIST path = NULL;
-  unsigned long len =0;
+  unsigned long len =0;  //long avant mais problème
   graphe = lectureFichier("data/metroetu.csv", &len);
   printf("+++ WESH ALORS %s +++\n", graphe[0].nom);
-  printf("len = %lu\n", len);
+  printf("len = %ld \n", len);
   //afficheGraphe(graphe, len);
-
+  printf("graphe : %p \n", graphe);
   path = Astar(graphe, 10 , 100);
   visualiser_Aliste(path);
   free(graphe);

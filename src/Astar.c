@@ -30,6 +30,7 @@ retenus, on en extrait le plus court chemin
 ----------------------------------------------------------------------------
 */
 ALIST Astar(GRAPHE graph,unsigned long d, unsigned long a){
+  printf("entrée dans A*\n");
   //liste contenant les noeuds visités
   ALIST LF = creer_Aliste();
   //
@@ -43,7 +44,8 @@ ALIST Astar(GRAPHE graph,unsigned long d, unsigned long a){
   node2.weight = 0;
   node2.path = graph[d];
   node2.cbwght = distanceEuclidienne(graph[d], graph[a]);
-  printf("%p",LF);
+  visualiser_Aliste(LF);
+  printf("juste avant le point critique ...\n");
   LF = Aliste_ajout_tete(node2,LF); //ajout du noeud de départ dans la liste finale
 
   while(node2.indice != a)
