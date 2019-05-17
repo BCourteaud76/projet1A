@@ -24,7 +24,7 @@ T_SOMMET * lectureFichier(char* fileName, unsigned long *len){
     printf(" ligne rejetée : '%s'\n", str);
     puts("indices sommets :");
     for(i=0; i<nl; i++){
-      fscanf(f,"%lu %lf %lf %s", &d, &(graph[i].x), &(graph[i].y), &(graph[i].ligne[0]));
+      fscanf(f,"%lu %lf %lf %s ", &d, &(graph[i].x), &(graph[i].y), &(graph[i].ligne[0]));
       fgets(graph[i].nom,80,f);
       //printf("indice : %lu , x : %lf y : %lf ligne '%s' nom '%s'\n",d, graph[i].x, graph[i].y, graph[i].ligne, graph[i].nom );
       /*

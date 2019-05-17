@@ -13,10 +13,10 @@ int main (){
   graphe = lectureFichier("data/metroetu.csv", &len);
   printf("+++ WESH ALORS %s +++\n", graphe[0].nom);
   printf("len = %ld \n", len);
-  //afficheGraphe(graphe, len);
+  afficheGraphe(graphe, len);
   printf("graphe : %p \n", graphe);
-  path = Astar(graphe, 10 , 100);
-  visualiser_Aliste(path);
+  //path = Astar(graphe, 10 , 100);
+  //visualiser_Aliste(path);
   free(graphe);
   return 0;
 }

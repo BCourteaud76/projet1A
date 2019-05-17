@@ -45,14 +45,14 @@ ALIST Astar(GRAPHE graph,unsigned long d, unsigned long a){
   node2.path = graph[d];
   node2.cbwght = distanceEuclidienne(graph[d], graph[a]);
   visualiser_Aliste(LF);
-  printf("juste avant le point critique ...\n");
+  printf("juste avant le premier point critique ...\n");
   LF = Aliste_ajout_tete(node2,LF); //ajout du noeud de départ dans la liste finale
-
+  printf("on se dirige vers le while du A* \n");
   while(node2.indice != a)
   {
     s = node2.indice; //s devient le dernier sommet ajouté dans LF
     L_ARC listeArc=NULL;
-
+    printf("on se dirige vers le for du A*\n");
     //parcours de tout les voisins :
     for(listeArc = graph[s].voisins; !liste_vide(listeArc); listeArc = listeArc->suiv)
     {
