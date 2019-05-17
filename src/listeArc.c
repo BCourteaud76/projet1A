@@ -34,13 +34,12 @@ Liste liberer_liste(Liste l) {
 }
 
 Liste ajout_queue(ELEMENT arc, Liste l) {
-
   if (liste_vide(l)) {
 		return ajout_tete(arc, l);
 	}
 	Liste p=l, u = NULL;
-	Liste q;
-  if ( (q=calloc( 1, sizeof (*q)))!=NULL)  { q->val=arc;}
+	Liste q = NULL;
+  if ( (q=calloc( 1, sizeof (*q)))!=NULL)  { q->val=arc; q->suiv = NULL;}
 
 	while (!liste_vide(p)) {
     u = p;

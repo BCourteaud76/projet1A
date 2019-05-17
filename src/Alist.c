@@ -9,34 +9,11 @@ int Aliste_vide(ALIST l){
 }
 
 ALIST Aliste_ajout_tete(NODE node, ALIST l){
-  printf("entrée dans Aliste_ajout_tete\n");
-  ALIST p;// = creer_Aliste();
-  printf("taille de ALIST : %ld \n",sizeof(struct Alist{ NODE val; struct Alist *suiv;}));
-  printf("taille de NODE : %ld \n",sizeof(NODE));
-  p= (ALIST) calloc(1, sizeof (struct Alist));
-  if (p != NULL){
-    printf("ajout_tete 3\n");
-    printf("node.name : %s \n",node.name);
-    printf("p->val.name : %s \n",p->val.name);
-    p->val.name="lo";
-    printf("p->val.name : %s \n",p->val.name);
-    p->suiv = l;
-    printf("ajout_tete 4\n");
+  ALIST p = creer_Aliste();
+  if( (p=calloc(1, sizeof (*p))) != NULL){
     p->val = node;
-    /*
-    p->val.name = node.name;
-    p->val.indice = node.indice;
-    p->val.weight = node.weight;
-    p->val.path = node.path;
-    p->val.cbwght = node.cbwght;
-    */
-    printf("ajout_tete 5\n");
+    p->suiv = l;
   }
-  else {
-    printf ("problème d'allocation mémoire dans Aliste_ajout_tete\n");
-    exit(1);
-  }
-  printf("retour fonction Aliste_ajout_tete : %p\n",p);
   return p;
 }
 
@@ -61,9 +38,26 @@ ALIST Aliste_supprimer_tete(ALIST l){
   }
   return l;
 }
+
+ALIST Aliste_ajout_queue(NODE node, ALIST l){
+  if (Aliste_vide(l)){
+    return Aliste_ajout_tete(node, l);
+  }
+  ALIST p = l, u =NULL, q = NULL;
+  if( (q=calloc(1, sizeof(*q))) != NULL ){
+    q->val=node;
+  }
+  while(!Aliste_vide(p)){
+    u = p;
+    p=p->suiv;
+  }
+  u->suiv = q;
+  return l;
+}
+
 ALIST liberer_Aliste(ALIST l){
   ALIST p = creer_Aliste();
-  for(l=l; !Aliste_vide(l); l = l->suiv){
+  for(l; !Aliste_vide(l); l = l->suiv){
     p = l;
     l = l->suiv;
     free(p);
@@ -74,7 +68,7 @@ ALIST liberer_Aliste(ALIST l){
 void visualiser_Aliste(ALIST l){
   ALIST p = creer_Aliste();
   for(p=l ; !Aliste_vide(p); p = p->suiv){
-    printf("|| NUMBER : %s , WEIGHT : %lf , PATH : %s , COMBINED WEIGHT : %lf ||\n", l->val.name, l->val.weight, l->val.path.nom, l->val.cbwght );
+    printf("||\nSommet n° %lu : %s depuis %s WEIGHT : %lf , COMBINED WEIGHT : %lf \n||\n", l->val.indice, l->val.name,l->val.path.nom, l->val.weight,  l->val.cbwght  );
   }
 }
 
@@ -104,25 +98,56 @@ RETURN : retourne une liste (ALIST) formant un tas contenant le nouveau noeud
 
 ALIST augmenteLO(ALIST LO, NODE noeud){
   ALIST p = creer_Aliste();
+  char flag = 0;
+
   if (Aliste_vide(LO)){
+    puts("#1");
     LO = Aliste_ajout_tete(noeud, LO);
     return LO;
-
   }
+  puts("#2");
 
   for(p=LO; !Aliste_vide(p); p= p->suiv){
-
-    //suppression de l'ancien noeud si identique avec un meilleur cout
-    if( ((p->suiv)->val).indice == noeud.indice && ((p->suiv)->val).cbwght > noeud.cbwght){
-      ALIST h = p->suiv;
-      p->suiv = (p->suiv)->suiv;
-      free(h);
+    puts("#3");
+    if(Aliste_vide(p)){
+      puts("that's not suppose to append ouuups");
     }
-
+    //changement du cntenu de l'ancien noeud si identique avec un meilleur cout
+    if( ((p->val).indice == noeud.indice) && ((p->val).cbwght > noeud.cbwght)){
+      p->val = noeud;
+      puts("+++++++++++");
+    }
+    //traitement du cas ou il n'y a qu'un élément dans la lis
+    if(Aliste_vide(p->suiv)){
+      puts("#4");
+      ALIST h = creer_Aliste();
+      if ( (h=calloc(1,sizeof(*h))) == NULL ){
+        printf("probleme d'allocation #1");
+        return LO;
+      }
+      else if(noeud.cbwght > (p->val).cbwght){
+        puts("#5");
+        h->val = noeud;
+        p->suiv = h;
+        h->suiv = NULL;
+      }
+      else {
+        puts("#6");
+        h->val=p->val;
+        p->val = noeud;
+        p->suiv = h;
+        h->suiv = NULL;
+      }
+    }
     //ajout du noeud au bon endroit
-    if( ((p->suiv)->val).cbwght > noeud.cbwght ){
+    if( ( (p->val).cbwght > noeud.cbwght ) && ( flag == 0 ) ){
+      puts("#7");
+      flag = 250;
+      printf("soin %s\n", noeud.name);
       ALIST l = creer_Aliste();
-      if( (l=calloc(1, sizeof(ALIST *))) != NULL){
+      if( (l=calloc(1, sizeof(*l))) != NULL){
+        l->val = p->val;
+        p->val = noeud;
         l->suiv = (p->suiv)->suiv;
         p->suiv = l;
       }
@@ -132,5 +157,7 @@ ALIST augmenteLO(ALIST LO, NODE noeud){
       }
     }
   }
+  //traitons le cas où il n'y a qu'un élément dans LO
+
   return LO;
 }

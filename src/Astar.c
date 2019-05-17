@@ -38,6 +38,7 @@ ALIST Astar(GRAPHE graph,unsigned long d, unsigned long a){
   NODE node1,node2;
   unsigned long s;//sommet courant
   s = d;
+  char str[10];
 
   node2.indice = d;
   node2.name = graph[d].nom;
@@ -52,16 +53,23 @@ ALIST Astar(GRAPHE graph,unsigned long d, unsigned long a){
   {
     s = node2.indice; //s devient le dernier sommet ajouté dans LF
     L_ARC listeArc=NULL;
+<<<<<<< HEAD
     printf("on se dirige vers le for du A*\n");
+=======
+    puts("hors boucle");
+>>>>>>> 1e11decbdaaf08c16e29dd6acfe4f4333eb8e503
     //parcours de tout les voisins :
     for(listeArc = graph[s].voisins; !liste_vide(listeArc); listeArc = listeArc->suiv)
     {
+      scanf("%c",str);
       node1.indice = (listeArc->val).arrivee;
       node1.name = graph[node1.indice].nom;//nom du sommet cible
       node1.weight = (listeArc->val).cout + node2.weight;
       node1.path = graph[s];
       node1.cbwght = node1.weight + distanceEuclidienne(graph[node1.indice], graph[a]);
+      puts("OOOOOOOOOOOOO");
       LO = augmenteLO(LO, node1);
+      visualiser_Aliste(LO);
     }
     //mise à jour
     node2 = LO->val;
