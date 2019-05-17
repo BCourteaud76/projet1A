@@ -11,7 +11,9 @@ int Aliste_vide(ALIST l){
 ALIST Aliste_ajout_tete(NODE node, ALIST l){
   printf("entrée dans Aliste_ajout_tete\n");
   ALIST p;// = creer_Aliste();
-  p= (ALIST) calloc(1, sizeof (ALIST));
+  printf("taille de ALIST : %ld \n",sizeof(struct Alist{ NODE val; struct Alist *suiv;}));
+  printf("taille de NODE : %ld \n",sizeof(NODE));
+  p= (ALIST) calloc(1, sizeof (struct Alist));
   if (p != NULL){
     printf("ajout_tete 3\n");
     printf("node.name : %s \n",node.name);
@@ -20,21 +22,21 @@ ALIST Aliste_ajout_tete(NODE node, ALIST l){
     printf("p->val.name : %s \n",p->val.name);
     p->suiv = l;
     printf("ajout_tete 4\n");
-    //p->val = node;
-
+    p->val = node;
+    /*
     p->val.name = node.name;
     p->val.indice = node.indice;
     p->val.weight = node.weight;
     p->val.path = node.path;
     p->val.cbwght = node.cbwght;
-
+    */
     printf("ajout_tete 5\n");
   }
   else {
-    printf ("problème d'allocation mémoire dans Aliste_ajout_tete");
+    printf ("problème d'allocation mémoire dans Aliste_ajout_tete\n");
     exit(1);
   }
-  printf("retour fonction Aliste_ajout_tete : %p",p);
+  printf("retour fonction Aliste_ajout_tete : %p\n",p);
   return p;
 }
 
