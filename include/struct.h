@@ -14,6 +14,12 @@ typedef struct {
   L_ARC voisins;
 } T_SOMMET ;
 
+<<<<<<< current
 //typedef struct graph { T_SOMMET noeud; struct graph *suiv;}* GRAPHE;
 
 #endif
+=======
+typedef struct { int arrivee; double cout; } T_ARC ;
+
+typedef struct lsucc { T_ARC val; struct lsucc* suiv ; }* L_ARC;
+>>>>>>> before discard
