@@ -13,7 +13,9 @@ int main (){
   graphe = lectureFichier("metroetu.csv", &len);
   //afficheGraphe(graphe, len);
 
-  path = Astar(graphe, 0 , 676);
+  path = Astar(graphe, 0 , 30);
+  puts("MAIIIIIN");
   visualiser_Aliste(path);
+  liberer_Aliste(path);
   free(graphe);
 }
