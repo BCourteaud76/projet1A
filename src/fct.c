@@ -54,6 +54,7 @@ T_SOMMET * lectureFichier(char* fileName, unsigned long *len){
       //printf("%lu %lu %lf\n",origine, voisins.arrivee, voisins.cout);
       graph[origine].voisins = ajout_tete( arc, graph[origine].voisins);
     }
+    fclose(f);
     return graph;
 }
 
@@ -67,4 +68,12 @@ void afficheGraphe(T_SOMMET*graph, unsigned long len){
   for(i=0; i<len; i++){
     printf("%s %lf %lf %s\n", graph[i].ligne, graph[i].x, graph[i].y,  graph[i].nom);
   }
+}
+
+void libereGraphe(T_SOMMET *graph, unsigned long len){
+  unsigned long i;
+  for(i=0; i<len; i++){
+    graph[i].voisins = liberer_liste(graph[i].voisins);
+  }
+  free(graph);
 }

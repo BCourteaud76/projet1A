@@ -6,26 +6,36 @@
 #include "graphe.h"
 #include "listeArc.h"
 #include "Astar.h"
-/*toutes les fonctions sur les listes adaptée à la structure NODE (voir algo.h)
-commencent par la capitale A*/
 
-
+/*
+----------------------------------------------------------------------------
+FONCTION :
+----------------------------------------------------------------------------
+DESCRIPTION :
+----------------------------------------------------------------------------
+PARAMETERS :
+  -
+----------------------------------------------------------------------------
+RETURN :
+----------------------------------------------------------------------------
+*/
 double distanceEuclidienne(T_SOMMET a, T_SOMMET b){
     return sqrt((a.x-b.x)*(a.x-b.x)+ (a.y-b.y)*(a.y-b.y));
 }
 
 /*
 ----------------------------------------------------------------------------
-FONCTION : algoAstar
+FONCTION : ALIST Astar(GRAPHE graph, unsigned long d, insigned long a)
 ----------------------------------------------------------------------------
-DESCRIPTION :
+DESCRIPTION : determine le plus court chemin et le retourne sous la forme
+d'une ALIST
 ----------------------------------------------------------------------------
 PARAMETERS :
-  - graph : le graphe contruit après lecture des fichiers contenant la carte
+  - graph : le graphe construit après lecture des fichiers contenant la carte
   - d : indice du sommet de départ dans le graphe
   - a : indice du sommet d'arrivée dans le graphe
 ----------------------------------------------------------------------------
-RETURN : La liste de type ALIST (voir algo.h) contenant tout les sommets
+RETURN : La liste de type ALIST (voir Alsite.h) contenant tout les sommets
 retenus, on en extrait le plus court chemin
 ----------------------------------------------------------------------------
 */
@@ -86,7 +96,7 @@ ALIST Astar(GRAPHE graph,unsigned long d, unsigned long a){
       }
       else if ( (cell = rechercheAliste(LO, node1.indice, prevCell)) != NULL){
         if(node1.cbwght < cell->val.cbwght){
-          supprimeCellule(cell, prevCell);
+          LO = supprimeCellule(LO , cell, prevCell);
           LO = AlisteTriInsertion(LO, node1);
         }
         else{
@@ -100,5 +110,6 @@ ALIST Astar(GRAPHE graph,unsigned long d, unsigned long a){
   }
   puts("l'algorithme s'est terminé sans trouver la destination");
   LO = liberer_Aliste(LO);
+  LF = liberer_Aliste(LF);
   return LF;
 }

@@ -29,7 +29,7 @@ void visualiser_Aliste(ALIST l);
 ALIST liberer_Aliste(ALIST l);
 
 ALIST rechercheAliste(ALIST l, unsigned long e, ALIST prevCell);
-void supprimeCellule(ALIST cell, ALIST prevCell);
+ALIST supprimeCellule(ALIST LO, ALIST cell, ALIST prevCell);
 ALIST AlisteTriInsertion(ALIST l, NODE node);
 
 ALIST augmenteLO(ALIST LO, NODE noeud);

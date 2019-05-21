@@ -95,6 +95,7 @@ RETURN : ALIST : addresse de l'élément dans la liste, NULL si absent
 */
 ALIST rechercheAliste(ALIST liste,unsigned long e, ALIST prevCell){
   ALIST p = creer_Aliste();
+  prevCell = NULL;
   for(p = liste; !Aliste_vide(p);p=p->suiv){
     if(e == p->val.indice){
       return p;
@@ -105,28 +106,27 @@ ALIST rechercheAliste(ALIST liste,unsigned long e, ALIST prevCell){
   return p;
 }
 
-void supprimeCellule(ALIST cell,ALIST prevCell){
-  ALIST p = creer_Aliste();
+ALIST supprimeCellule(ALIST liste, ALIST cell,ALIST prevCell){
+  //ALIST p = creer_Aliste();
   if(prevCell == NULL && cell == NULL){
     //ne rien faire (nos paramètres sont innexistants)
-    return;
+    return liste;
   }
   else if(cell == NULL){
     //ne rien faire car la cellule à supprimer n'éxiste pas
-    return;
+    return liste;
   }
   else if(prevCell==NULL){
     //il n'a pas de cellule précedente
-    p = cell;
-    cell = cell -> suiv;
-    free(p);
-    return;
+    liste = cell -> suiv;
+    free(cell);
+    return liste;
   }
   else {
     prevCell->suiv = cell->suiv;
     free(cell);
     prevCell=NULL;
-    return;
+    return liste;
   }
 }
 

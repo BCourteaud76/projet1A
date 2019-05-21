@@ -10,12 +10,17 @@ int main (){
   GRAPHE graphe= NULL;
   ALIST path = NULL;
   unsigned long len =0;
+  unsigned long a =0, d=0;
   graphe = lectureFichier("metroetu.csv", &len);
   //afficheGraphe(graphe, len);
-
-  path = Astar(graphe, 0 , 30);
+  puts("entrez le sommet de départ");
+  scanf("%lu", &d);
+  puts("entrez le sommet d'arrivée");
+  scanf("%lu", &a);
+  path = Astar(graphe, d , a);
   puts("MAIIIIIN");
   visualiser_Aliste(path);
   liberer_Aliste(path);
-  free(graphe);
+  libereGraphe(graphe, len);
+  return 0;
 }
