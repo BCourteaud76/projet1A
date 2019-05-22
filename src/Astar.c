@@ -74,7 +74,8 @@ ALIST Astar(GRAPHE graph,unsigned long d, unsigned long a){
     printf("n°courant %lu, n°arrivée %lu\n", node2.indice, a);
     s = node2.indice; //s devient le dernier sommet ajouté dans LF
     if (s==a){
-      liberer_Aliste(LO);
+      LO = liberer_Aliste(LO);
+      LF = itineraire(LF);
       return LF;//fin
     }
 
@@ -83,7 +84,6 @@ ALIST Astar(GRAPHE graph,unsigned long d, unsigned long a){
     for(listeArc = graph[s].voisins; !liste_vide(listeArc); listeArc = listeArc->suiv)
     {
       //scanf("%c",str);
-      puts("\n\n\n\n");
       node1.indice = (listeArc->val).arrivee;
       node1.name = graph[node1.indice].nom;//nom du sommet cible
       node1.weight = (listeArc->val).cout + node2.weight;
@@ -111,5 +111,34 @@ ALIST Astar(GRAPHE graph,unsigned long d, unsigned long a){
   puts("l'algorithme s'est terminé sans trouver la destination");
   LO = liberer_Aliste(LO);
   LF = liberer_Aliste(LF);
+  return LF;
+}
+
+/*
+----------------------------------------------------------------------------
+FONCTION : ALIST itineraire(ALIST LF)
+----------------------------------------------------------------------------
+DESCRIPTION : extrait l'itinéraire de la liste fermée
+----------------------------------------------------------------------------
+PARAMETERS :
+  - ALIST LF prends en paramètre la liste fermée générée dans Astar() pour en
+  supprimer les cellules inutile au chemin
+----------------------------------------------------------------------------
+RETURN : ALIST retourne l'itinéraire sous forme d'une ALIST, l'arrivée en tête
+----------------------------------------------------------------------------
+*/
+
+ALIST itineraire(ALIST LF){
+  ALIST p = NULL;
+  ALIST h =NULL;
+  for(p = LF; !Aliste_vide(p->suiv); p = p->suiv){
+    //printf(" indice suiv %lu indice path %lu \n",p->suiv->val.indice, p->val.path.indice);
+    while(p->suiv->val.indice != p->val.path.indice && p->suiv != NULL){
+      h = p->suiv;
+      //printf("suppression de %lu\n", h->val.indice);
+      p->suiv = p->suiv->suiv;
+      free(h);
+    }
+  }
   return LF;
 }

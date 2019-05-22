@@ -131,22 +131,22 @@ ALIST supprimeCellule(ALIST liste, ALIST cell,ALIST prevCell){
 }
 
 ALIST AlisteTriInsertion(ALIST l, NODE node){
-  puts("#0");
+  //puts("#0");
 
   if (Aliste_vide(l)){
-    puts("#1");
+    //puts("#1");
     l = Aliste_ajout_tete(node, l);
     return l;
   }
 
   ALIST p = creer_Aliste();
   for(p = l; !Aliste_vide(p); p = p->suiv){
-    puts("#2");
+    //puts("#2");
     if(node.cbwght < p->val.cbwght ){
-      puts("#3");
+      //puts("#3");
       ALIST h = creer_Aliste();
       if( (h=calloc(1, sizeof(*h))) != NULL){
-        puts("#4");
+        //puts("#4");
         h->val = p->val;
         p->val = node;
         h->suiv = p->suiv;
@@ -160,7 +160,7 @@ ALIST AlisteTriInsertion(ALIST l, NODE node){
     else if (p->suiv==NULL){
       ALIST h = creer_Aliste();
       if( (h=calloc(1,sizeof(*h))) != NULL){
-        puts("#6");
+        //puts("#6");
         h->val = node;
         h->suiv = p->suiv;
         p->suiv = h;
@@ -168,7 +168,7 @@ ALIST AlisteTriInsertion(ALIST l, NODE node){
       }
     }
   }
-  puts("#6");
+  //puts("#6");
   return l;
 }
 
