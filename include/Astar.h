@@ -4,6 +4,6 @@
 #include "graphe.h"
 double distanceEuclidienne(T_SOMMET a, T_SOMMET b);
 ALIST Astar(GRAPHE graph, unsigned long d,unsigned long s);
-
+ALIST itineraire(ALIST l);
 
 #endif

@@ -9,25 +9,18 @@
 int main (){
   GRAPHE graphe= NULL;
   ALIST path = NULL;
-<<<<<<< HEAD
-  unsigned long len =0;  //long avant mais problème
-  graphe = lectureFichier("data/metroetu.csv", &len);
-  printf("+++ WESH ALORS %s +++\n", graphe[0].nom);
-  printf("len = %ld \n", len);
-  afficheGraphe(graphe, len);
-  printf("graphe : %p \n", graphe);
-  //path = Astar(graphe, 10 , 100);
-  //visualiser_Aliste(path);
-  free(graphe);
-  return 0;
-}
-=======
   unsigned long len =0;
+  unsigned long a =0, d=0;
   graphe = lectureFichier("metroetu.csv", &len);
   //afficheGraphe(graphe, len);
->>>>>>> 1e11decbdaaf08c16e29dd6acfe4f4333eb8e503
-
-  path = Astar(graphe, 0 , 676);
+  puts("entrez le sommet de départ");
+  scanf("%lu", &d);
+  puts("entrez le sommet d'arrivée");
+  scanf("%lu", &a);
+  path = Astar(graphe, d , a);
+  puts("MAIIIIIN");
   visualiser_Aliste(path);
-  free(graphe);
+  liberer_Aliste(path);
+  libereGraphe(graphe, len);
+  return 0;
 }
