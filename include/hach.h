@@ -9,4 +9,8 @@ typedef struct hachsui{
 
 #define TAILLE_TAB_HACH 400
 
+unsigned long hachage (char* mot);
+unsigned long rechercheStation(char* station);
+HACH* remplirTabHach(char* fichier);
+
 #endif
