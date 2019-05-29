@@ -87,7 +87,7 @@ ALIST Astar(GRAPHE graph,unsigned long d, unsigned long a){
       node1.indice = (listeArc->val).arrivee;
       node1.name = graph[node1.indice].nom;//nom du sommet cible
       node1.weight = (listeArc->val).cout + node2.weight;
-      node1.cbwght = node1.weight + 1000*distanceEuclidienne(graph[node1.indice], graph[a]);
+      node1.cbwght = 0*node1.weight + 10*distanceEuclidienne(graph[node1.indice], graph[a]);
       //construction du noeud.path
       node1.path.indice = node2.indice;
       node1.path.nom = node2.name;
