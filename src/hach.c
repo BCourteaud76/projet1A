@@ -39,13 +39,11 @@ unsigned long rechercheStation(char* station,HACH* tabHach){
 	 * Retourne 0 si nom de station inconu
 	 */
 	unsigned long hacha=hachage(station);
-	printf("le hach de la station recherchée est : %ld\n",hacha);
+	//printf("le hach de la station recherchée est : %ld\n",hacha);
 	HACH p=*(tabHach+hacha);
-	printf("le nom de la première station est : %s\n",p->nom);
+	//printf("le nom de la première station est : %s\n",p->nom);
 	if (strcmp (p->nom,station)!=0){
-		//printf("le nom de la station n'est pas bon pour le premier\n");
 		if (p->suiv!=NULL){
-			//printf("on est allé voir le suivant\n");
 			p=p->suiv;
 		}
 		else{
@@ -64,14 +62,13 @@ HACH* remplirTabHach(char* fichier){
 	}
 	unsigned long nl,nbArc;
   fscanf(f,"%lu %lu", &nl, &nbArc);
-	//printf("on a nl = %ld\n",nl);
   HACH* tabHach=calloc(TAILLE_TAB_HACH, sizeof(HACH));
   unsigned long d;
   double x,y;
   char ligne[30];
 	char* station=calloc(100,sizeof(char));
-	char* stationNet;//=calloc(100,sizeof(char));
-  //char station[100];
+	char* stationNet;
+
 	char str[60];
 	fgets(str,59,f);
 	fgets(str,59,f);
@@ -81,9 +78,9 @@ HACH* remplirTabHach(char* fichier){
 		fscanf(f,"%lu %lf %lf %s", &d, &x, &y, ligne);
 		fgets(station,100,f);
 		stationNet=nettoyage(station);
-		printf("le nom de la station est : %s\n", stationNet);
+		//printf("le nom de la station est : %s\n", stationNet);
 		hacha=hachage(stationNet);
-		printf("son hach est : %d\n", hacha);
+		//printf("son hach est : %d\n", hacha);
 		if (tabHach[hacha]==NULL){	//si pas de collisions
 			tabHach[hacha]=calloc(1,sizeof(struct hachsui));
 			tabHach[hacha]->sommet=i;
@@ -91,15 +88,15 @@ HACH* remplirTabHach(char* fichier){
 			tabHach[hacha]->suiv=NULL;
 		}
 		else{							// si colision
-			printf("on a une collision !\n");
+			//printf("on a une collision !\n");
 			HACH p=*(tabHach+hacha);
 			while (p->suiv!=NULL){
-				printf("ce n'est pas la première à cet indice !\n");
+				//printf("ce n'est pas la première à cet indice !\n");
 				p=p->suiv;
 			}
 			p->suiv=calloc(1,sizeof(struct hachsui));
 			if (p->suiv == NULL){
-				printf("probleme d'allocation mémoire dans une collision\n");
+				//printf("probleme d'allocation mémoire dans une collision\n");
 				exit(1);
 			}
 			p->suiv->sommet=i;
@@ -109,33 +106,24 @@ HACH* remplirTabHach(char* fichier){
 	}
 	fclose(f);
 	free(station);
-	//free(stationNet);
-	printf("La table de hachage est correctement remplie\n");
+	//printf("La table de hachage est correctement remplie\n");
 	return tabHach;
 }
 
-HACH libereHach(HACH cellule){
-	printf("le truc incriminé : %p \n", cellule->suiv);
-	HACH laSuivante=cellule->suiv;
-	free(cellule);
-	return laSuivante;
-}
-
 HACH libereListeHach(HACH cellule){
-	if (cellule!=NULL){
-		HACH next=cellule;
-		do {
-			next=libereHach(cellule);
-		} while (next!=NULL);
+	HACH next=cellule;
+	HACH current= cellule;
+	while (next!=NULL){
+		current=next;
+		next=next->suiv;
+		free(current);
 	}
 	return NULL;
 }
 
 HACH* freeTable(HACH* table){
-	printf("on va faire le menage !\n");
 	unsigned long i;
 	for (i=0;i<TAILLE_TAB_HACH;i++){
-		printf("i = %ld\n",i);
 		*(table+i)=libereListeHach(*(table+i));
 	}
 	free(table);
