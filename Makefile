@@ -1,5 +1,5 @@
 CFLAGS = -g -Wall -Wextra -Iinclude/ -Isrc/
-LDFLAGS = -lm -lSDL -lSDLmain -lSDL_draw
+LDFLAGS = -lm -lSDL -lSDL_draw
 CC = gcc
 
 EXEC = main

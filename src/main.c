@@ -5,8 +5,14 @@
 #include "graphe.h"
 #include "fct.h"
 #include "Astar.h"
+#include "hach.h"
 
 int main (){
+  
+  char* fichier="metroetu.csv";
+  HACH table=remplirTabHach(fichier);
+  freeTable(table);
+  /*
   GRAPHE graphe= NULL;
   ALIST path = NULL;
   unsigned long len =0;
@@ -22,5 +28,6 @@ int main (){
   visualiser_Aliste(path);
   liberer_Aliste(path);
   libereGraphe(graphe, len);
+*/
   return 0;
 }

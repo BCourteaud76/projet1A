@@ -13,5 +13,6 @@ typedef struct hachsui{
 unsigned long hachage (char* mot);
 unsigned long rechercheStation(char* station,HACH tabHach);
 HACH remplirTabHach(char* fichier);
+HACH freeTable(HACH table);
 
 #endif
