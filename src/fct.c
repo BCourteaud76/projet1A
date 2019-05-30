@@ -77,3 +77,8 @@ void libereGraphe(T_SOMMET *graph, unsigned long len){
   }
   free(graph);
 }
+
+void clean_stdin(void){
+    int c = 0;
+    while ((c = getchar()) != '\n' && c != EOF);
+}

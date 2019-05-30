@@ -10,7 +10,7 @@ char* nettoyage(char* station){
 		nouv++;
 		i++;
 	}
-	while (*station!='\n' && station!='\0'){
+	while (*station!='\n' && *station!='\0'){
 		station++;
 	}
 	*station='\0';
@@ -39,10 +39,12 @@ unsigned long rechercheStation(char* station,HACH* tabHach){
 	 * Retourne 0 si nom de station inconu
 	 */
 	unsigned long hacha=hachage(station);
-	//printf("le hach de la station recherchée est : %ld\n",hacha);
+	printf("le hach de la station recherchée est : %ld\n",hacha);
+  printf("Elle est cherchée dans :\n");
+  affichetabhach(*(tabHach+hacha));
 	HACH p=*(tabHach+hacha);
 	//printf("le nom de la première station est : %s\n",p->nom);
-	if (strcmp (p->nom,station)!=0){
+	while (strcmp (p->nom,station)!=0){
 		if (p->suiv!=NULL){
 			p=p->suiv;
 		}
@@ -78,9 +80,9 @@ HACH* remplirTabHach(char* fichier){
 		fscanf(f,"%lu %lf %lf %s", &d, &x, &y, ligne);
 		fgets(station,100,f);
 		stationNet=nettoyage(station);
-		//printf("le nom de la station est : %s\n", stationNet);
+		printf("le nom de la station est : %s\n", stationNet);
 		hacha=hachage(stationNet);
-		//printf("son hach est : %d\n", hacha);
+		printf("son hach est : %d\n", hacha);
 		if (tabHach[hacha]==NULL){	//si pas de collisions
 			tabHach[hacha]=calloc(1,sizeof(struct hachsui));
 			tabHach[hacha]->sommet=i;
@@ -101,7 +103,7 @@ HACH* remplirTabHach(char* fichier){
 			}
 			p->suiv->sommet=i;
 			p->suiv->suiv=NULL;
-			strncpy(p->suiv->nom, station, sizeof(*station));
+			strncpy(p->suiv->nom, stationNet, 100*sizeof(*stationNet));
 		}
 	}
 	fclose(f);
@@ -128,4 +130,11 @@ HACH* freeTable(HACH* table){
 	}
 	free(table);
 	return NULL;
+}
+
+void affichetabhach(HACH aff){
+	while (aff!=NULL){
+		printf("la station dans la table est : %s\n", aff->nom);
+    aff=aff->suiv;
+	}
 }

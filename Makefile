@@ -1,15 +1,19 @@
 CFLAGS = -g -Wall -Wextra -Iinclude/ -Isrc/
-LDFLAGS = -lm -lSDL -lSDL_draw
+LDFLAGS = -lm -lSDL -lSDLmain -lSDL_draw
 CC = gcc
 
-EXEC = main
+EXEC = main vGraphique
 SRC = $(wildcard src/*c)
-OBJ = $(SRC:.c=.o)
+OBJ1 = src/Alist.o src/Astar.o src/fct.o src/listeArc.o src/main.o src/struct.o src/hach.o
+OBJ2 = src/Alist.o src/Astar.o src/fct.o src/listeArc.o src/vGraphique.o src/struct.o src/graphic.o src/hach.o
 TARGETDIR = bin/
 
 all : $(EXEC)
 
-main : $(OBJ)
+main : $(OBJ1)
+	$(CC) -o $(TARGETDIR)$@ $^ $(LDFLAGS)
+
+vGraphique : $(OBJ2)
 	$(CC) -o $(TARGETDIR)$@ $^ $(LDFLAGS)
 
 %.o : src/%.c
