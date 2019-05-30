@@ -14,4 +14,6 @@ typedef struct {
   L_ARC voisins;
 } T_SOMMET ;
 
+//typedef struct graph { T_SOMMET noeud; struct graph *suiv;}* GRAPHE;
+
 #endif

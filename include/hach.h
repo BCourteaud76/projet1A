@@ -16,5 +16,6 @@ unsigned long rechercheStation(char* station,HACH* tabHach);
 HACH* remplirTabHach(char* fichier);
 HACH libereListeHach(HACH cellule);
 HACH* freeTable(HACH* table);
+void affichetabhach(HACH aff);
 
 #endif
