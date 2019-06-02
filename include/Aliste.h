@@ -32,7 +32,7 @@ ALIST rechercheAliste(ALIST l, unsigned long e, ALIST prevCell);
 ALIST supprimeCellule(ALIST LO, ALIST cell, ALIST prevCell);
 ALIST AlisteTriInsertion(ALIST l, NODE node);
 
-ALIST augmenteLO(ALIST LO, NODE noeud);
+ALIST augmenteLO(ALIST LO, NODE noeud);//cette fonction n'est pas utilisée
 
 
 #endif

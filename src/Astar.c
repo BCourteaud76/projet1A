@@ -7,39 +7,41 @@
 #include "listeArc.h"
 #include "Astar.h"
 
-/*
-----------------------------------------------------------------------------
-FONCTION :
-----------------------------------------------------------------------------
-DESCRIPTION :
-----------------------------------------------------------------------------
-PARAMETERS :
-  -
-----------------------------------------------------------------------------
-RETURN :
-----------------------------------------------------------------------------
-*/
+
 double distanceEuclidienne(T_SOMMET a, T_SOMMET b){
+  /*
+  ----------------------------------------------------------------------------
+  DESCRIPTION : calcul la distance euclidienne entre deux sommets
+  ----------------------------------------------------------------------------
+  PARAMETERS :
+    - T_SOMMET a;
+    - T_SOMMET b;
+  ----------------------------------------------------------------------------
+  RETURN : la distance euclidenne 
+  ----------------------------------------------------------------------------
+  */
+
     return sqrt((a.x-b.x)*(a.x-b.x)+ (a.y-b.y)*(a.y-b.y));
 }
 
-/*
-----------------------------------------------------------------------------
-FONCTION : ALIST Astar(GRAPHE graph, unsigned long d, insigned long a)
-----------------------------------------------------------------------------
-DESCRIPTION : determine le plus court chemin et le retourne sous la forme
-d'une ALIST
-----------------------------------------------------------------------------
-PARAMETERS :
-  - graph : le graphe construit après lecture des fichiers contenant la carte
-  - d : indice du sommet de départ dans le graphe
-  - a : indice du sommet d'arrivée dans le graphe
-----------------------------------------------------------------------------
-RETURN : La liste de type ALIST (voir Alsite.h) contenant tout les sommets
-retenus, on en extrait le plus court chemin
-----------------------------------------------------------------------------
-*/
+
 ALIST Astar(GRAPHE graph,unsigned long d, unsigned long a){
+  /*
+  ----------------------------------------------------------------------------
+  DESCRIPTION : determine le plus court chemin et le retourne sous la forme
+  d'une ALIST
+  ----------------------------------------------------------------------------
+  PARAMETERS :
+    - graph : le graphe construit après lecture des fichiers contenant la carte
+    - d : indice du sommet de départ dans le graphe
+    - a : indice du sommet d'arrivée dans le graphe
+  ----------------------------------------------------------------------------
+  RETURN : La liste de type ALIST (voir Alsite.h) contenant tout les sommets
+  retenus (LF).
+  On peut en extraire l'itinéraire à l'aide de la fonction
+  ALIST intineraire(ALIST LF);
+  ----------------------------------------------------------------------------
+  */
   //liste contenant les noeuds visités
   ALIST LF = creer_Aliste();
   //liste ouverte
