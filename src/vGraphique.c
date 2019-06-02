@@ -26,8 +26,15 @@ int main(int agrc,char* agrv[]){
   Color c;
   c.r = 255; c.g=255; c.b = 255; //regle la couleur du background (RVB)
   screen = SdlNewWindow(LARGEUR, HAUTEUR, "PROJET S2", c);
-  reseauGraphique(screen, graphe, len);
 
+  char stationcherchee[100] = {0};
+  char* fichier=agrv[1];
+  reseauGraphique(screen, graphe, len);
+  puts("construction de la table de hachage, cela peut prendre plusieurs dixaines de secondes");
+  HACH* table=remplirTabHach(fichier);
+  char quit = 0;
+  while(quit==0){
+    reseauGraphique(screen, graphe, len);
 /*
   //parametrage du trajet
   puts("entrez le sommet de départ");
@@ -36,30 +43,40 @@ int main(int agrc,char* agrv[]){
   scanf("%lu", &a);
 */
 
-  char stationcherchee[100];
-  char* fichier=agrv[1];
-  HACH* table=remplirTabHach(fichier);
-  do {
-    puts("entrez la station de départ cherchée :");
-    scanf("%[^\n]",stationcherchee);
-    clean_stdin();
-    d = rechercheStation(stationcherchee,table);
-  } while (d==0);
-  do {
-    puts("entrez la station d'arrivée cherchée :");
-    scanf("%[^\n]",stationcherchee);
-    clean_stdin();
-    a = rechercheStation(stationcherchee,table);
-  } while (a==0);
-  printf("%ld %ld\n", d, a);
-  free(table);
 
-  path = Astar(graphe, d , a);
-  visualiser_Aliste(path);
+    do {
+      puts("entrez la station de départ cherchée :");
+      scanf("%[^\n]",stationcherchee);
+      clean_stdin();
+      d = rechercheStation(stationcherchee,table, len);
+    } while (d==0);
+    do {
+      puts("entrez la station d'arrivée cherchée :");
+      scanf("%[^\n]",stationcherchee);
+      clean_stdin();
+      a = rechercheStation(stationcherchee,table, len);
+    } while (a==0);
 
-  //affichage du trajet sur le graphique
-  itineraireGraphique(screen, graphe,len, path);
-  SdlPause(screen);
+  //printf("%ld %ld\n", d, a);
+
+
+    path = Astar(graphe, d , a);
+    visualiser_Aliste(path);
+
+    //affichage du trajet sur le graphique
+    itineraireGraphique(screen, graphe,len, path);
+    puts("fermer l'application ? Y/N ");
+    scanf("%[^\n]", stationcherchee);
+    printf("OOOO : %s \n",stationcherchee);
+    clean_stdin();
+    if(strcmp(stationcherchee, "Y")==0){
+      puts("teuuuub");
+      quit++;
+    }
+    SDL_FillRect(screen,NULL, SDL_MapRGB(screen->format,c.r,c.g,c.b));
+  }
+  //SdlPause(screen);
+  freeTable(table,len);
   SDL_Quit();
   liberer_Aliste(path);
   libereGraphe(graphe, len);

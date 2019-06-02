@@ -71,7 +71,7 @@ SDL_Surface *SdlNewWindow(int x, int y, const char *title, Color c){
 void coefficients(double *a,double *bx, double *by,T_SOMMET *graph, unsigned  long len){
   /*
   ----------------------------------------------------------------------------
-  DESCRIPTION :
+  DESCRIPTION : calcul de coefficients pour l'homotétie
   ----------------------------------------------------------------------------
   PARAMETERS :
     -
@@ -79,6 +79,7 @@ void coefficients(double *a,double *bx, double *by,T_SOMMET *graph, unsigned  lo
   RETURN :
   ----------------------------------------------------------------------------
   */
+
   unsigned long i;
   double xmax,xmin,ymax,ymin;
   xmin = graph[0].x; xmax = graph[0].x;
@@ -110,7 +111,7 @@ void coefficients(double *a,double *bx, double *by,T_SOMMET *graph, unsigned  lo
   }
   *bx = MARGIN-(*a)*xmin;
   *by = MARGIN -(*a)*ymin;
-  printf("xmax %lf, xmin %lf, ymax %lf, ymin %lf\n",xmax,xmin,ymax,ymin );
+  //printf("xmax %lf, xmin %lf, ymax %lf, ymin %lf\n",xmax,xmin,ymax,ymin );
 }
 void homotetie(double *xa,double*ya,double*xb,double*yb,double a, double bx,double by){
   /*
@@ -119,9 +120,10 @@ void homotetie(double *xa,double*ya,double*xb,double*yb,double a, double bx,doub
   en fonction de la plus grande difference des coordonée en x ou y
   ----------------------------------------------------------------------------
   PARAMETERS :
+    - double *xa :
     -
   ----------------------------------------------------------------------------
-  RETURN :
+  RETURN : void
   ----------------------------------------------------------------------------
   */
   *xa = a * (*xa) + bx;
@@ -167,6 +169,17 @@ void reseauGraphique(SDL_Surface *screen, T_SOMMET* graph, unsigned long len){
 }
 
 void itineraireGraphique(SDL_Surface *screen, T_SOMMET *graph,unsigned long len, ALIST path){
+  /*
+  ----------------------------------------------------------------------------
+  DESCRIPTION :
+  ----------------------------------------------------------------------------
+  PARAMETERS :
+    -
+  ----------------------------------------------------------------------------
+  RETURN :
+  ----------------------------------------------------------------------------
+  */
+
   ALIST p = NULL;
   double xa,ya,xb,yb,a,bx,by;
   Uint32 color = SDL_MapRGB(screen->format,64,64,255);

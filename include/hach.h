@@ -8,14 +8,14 @@ typedef struct hachsui{
 } *HACH;
 
 
-#define TAILLE_TAB_HACH 400
+//#define TAILLE_TAB_HACH 400
 
 char* nettoyage(char* station);
-unsigned long hachage (char* mot);
-unsigned long rechercheStation(char* station,HACH* tabHach);
+unsigned long hachage (char* mot, unsigned long len);
+unsigned long rechercheStation(char* station,HACH* tabHach, unsigned long len);
 HACH* remplirTabHach(char* fichier);
 HACH libereListeHach(HACH cellule);
-HACH* freeTable(HACH* table);
+HACH* freeTable(HACH* table,unsigned long len);
 void affichetabhach(HACH aff);
 
 #endif

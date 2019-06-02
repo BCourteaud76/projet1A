@@ -78,22 +78,21 @@ int taille_Aliste(ALIST l){
   return n;
 }
 
-/*
-----------------------------------------------------------------------------
-FONCTION : ALIST rechercheAliste(ALIST liste, unsigned long e)
-----------------------------------------------------------------------------
-DESCRIPTION : recherche la présence d'un (NODE) élément d'un certain (unsigned long)
-indice dans une ALIST et retourne sont addresse
-----------------------------------------------------------------------------
-PARAMETERS :
-  - ALIST liste : liste dans laquelle on effectue la recherche
-  - unsigned long e : élément à rechercher
-----------------------------------------------------------------------------
-RETURN : ALIST : addresse de l'élément dans la liste, NULL si absent
-          prev contient l'addresse avant l'élément recheché NULL si innexistant
-----------------------------------------------------------------------------
-*/
+
 ALIST rechercheAliste(ALIST liste,unsigned long e, ALIST prevCell){
+  /*
+  ----------------------------------------------------------------------------
+  DESCRIPTION : recherche la présence d'un (NODE) élément d'un certain (unsigned long)
+  indice dans une ALIST et retourne son addresse
+  ----------------------------------------------------------------------------
+  PARAMETERS :
+    - ALIST liste : liste dans laquelle on effectue la recherche
+    - unsigned long e : élément à rechercher
+  ----------------------------------------------------------------------------
+  RETURN : ALIST : addresse de l'élément dans la liste, NULL si absent
+            prev contient l'addresse avant l'élément recheché NULL si innexistant
+  ----------------------------------------------------------------------------
+  */
   ALIST p = creer_Aliste();
   prevCell = NULL;
   for(p = liste; !Aliste_vide(p);p=p->suiv){
@@ -107,7 +106,20 @@ ALIST rechercheAliste(ALIST liste,unsigned long e, ALIST prevCell){
 }
 
 ALIST supprimeCellule(ALIST liste, ALIST cell,ALIST prevCell){
-  //ALIST p = creer_Aliste();
+  /*
+  ----------------------------------------------------------------------------
+  DESCRIPTION : suprimme une cellule dans une ALIST (simplement chainée) et
+  la retroune
+  Cette fonction est utilisée dans la fonction Astar() (Astar.c)
+  ----------------------------------------------------------------------------
+  PARAMETERS :
+    - ALIST liste : liste dans laquelle on supprimera la cellule
+    - ALIST cell : adresse de la cellule à suppprimer
+    - ALIST prevCell :
+  ----------------------------------------------------------------------------
+  RETURN : Retourne l'adresse de Liste
+  ----------------------------------------------------------------------------
+  */
   if(prevCell == NULL && cell == NULL){
     //ne rien faire (nos paramètres sont innexistants)
     return liste;
@@ -131,8 +143,19 @@ ALIST supprimeCellule(ALIST liste, ALIST cell,ALIST prevCell){
 }
 
 ALIST AlisteTriInsertion(ALIST l, NODE node){
+  /*
+  ----------------------------------------------------------------------------
+  DESCRIPTION : insert une cellule dans LO à la bonne position par odre de
+  node.cbght croissant
+   ----------------------------------------------------------------------------
+  PARAMETERS :
+    - ALIST l : c'est LO qu'on passera en paramètre
+    - NODE node : pour rappel ALIST est une liste de NODE
+  ----------------------------------------------------------------------------
+  RETURN : l avec node placé à la bonne position
+  ----------------------------------------------------------------------------
+  */
   //puts("#0");
-
   if (Aliste_vide(l)){
     //puts("#1");
     l = Aliste_ajout_tete(node, l);
@@ -174,23 +197,21 @@ ALIST AlisteTriInsertion(ALIST l, NODE node){
 
 
 
-
-/*
-----------------------------------------------------------------------------
- !!!!!!!!!!!!!!!!!!!!!!!!!!NON FONCTIONNELLE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-FONCTION : ALIST augmenteLO(ALIST LO, NODE noeud)
-----------------------------------------------------------------------------
-DESCRIPTION : realise un tri par insertion et remplace les noeuds si le une
-meilleure valeur est trouvée
-----------------------------------------------------------------------------
-PARAMETERS :
-  - ALIST l
-  - NODE noeud
-----------------------------------------------------------------------------
-RETURN : retourne une liste (ALIST) formant un tas contenant le nouveau noeud
-----------------------------------------------------------------------------
-*/
 ALIST augmenteLO(ALIST LO, NODE noeud){
+  /*
+  ----------------------------------------------------------------------------
+   !!!!!!!!!!!!!!!!!!!!!!!!!!NON FONCTIONNELLE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+  ----------------------------------------------------------------------------
+  DESCRIPTION : realise un tri par insertion et remplace les noeuds si le une
+  meilleure valeur est trouvée
+  ----------------------------------------------------------------------------
+  PARAMETERS :
+    - ALIST l
+    - NODE noeud
+  ----------------------------------------------------------------------------
+  RETURN : retourne une liste (ALIST) formant un tas contenant le nouveau noeud
+  ----------------------------------------------------------------------------
+  */
   ALIST p = creer_Aliste();
   char flag = 0;
   printf("LO : ajout du noeud n°%lu %s",noeud.indice, noeud.name);
