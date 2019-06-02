@@ -62,15 +62,12 @@ int main(int agrc,char* agrv[]){
 
     path = Astar(graphe, d , a);
     visualiser_Aliste(path);
-
     //affichage du trajet sur le graphique
     itineraireGraphique(screen, graphe,len, path);
     puts("fermer l'application ? Y/N ");
     scanf("%[^\n]", stationcherchee);
-    printf("OOOO : %s \n",stationcherchee);
     clean_stdin();
     if(strcmp(stationcherchee, "Y")==0){
-      puts("teuuuub");
       quit++;
     }
     SDL_FillRect(screen,NULL, SDL_MapRGB(screen->format,c.r,c.g,c.b));

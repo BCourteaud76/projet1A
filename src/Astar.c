@@ -17,7 +17,7 @@ double distanceEuclidienne(T_SOMMET a, T_SOMMET b){
     - T_SOMMET a;
     - T_SOMMET b;
   ----------------------------------------------------------------------------
-  RETURN : la distance euclidenne 
+  RETURN : la distance euclidenne
   ----------------------------------------------------------------------------
   */
 
@@ -36,9 +36,8 @@ ALIST Astar(GRAPHE graph,unsigned long d, unsigned long a){
     - d : indice du sommet de départ dans le graphe
     - a : indice du sommet d'arrivée dans le graphe
   ----------------------------------------------------------------------------
-  RETURN : La liste de type ALIST (voir Alsite.h) contenant tout les sommets
-  retenus (LF).
-  On peut en extraire l'itinéraire à l'aide de la fonction
+  RETURN : La liste de type ALIST (voir Alsite.h) contenant l'itinéraire
+  L'itinéraire a été extrait de LF à l'aide de la fonction
   ALIST intineraire(ALIST LF);
   ----------------------------------------------------------------------------
   */
@@ -73,7 +72,7 @@ ALIST Astar(GRAPHE graph,unsigned long d, unsigned long a){
     LO = Aliste_supprimer_tete(LO);
     //puts("======================LF=======================");
     //visualiser_Aliste(LF);
-    printf("n°courant %lu, n°arrivée %lu\n", node2.indice, a);
+    //printf("n°courant %lu, n°arrivée %lu\n", node2.indice, a);
     s = node2.indice; //s devient le dernier sommet ajouté dans LF
     if (s==a){
       LO = liberer_Aliste(LO);
