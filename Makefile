@@ -1,5 +1,6 @@
-CFLAGS = -g -Wall -Wextra -Iinclude/ -Isrc/
-LDFLAGS = -lm -lSDL -lSDLmain -lSDL_draw
+DIRSDL=/users/prog1a/C/librairie/2011
+CFLAGS = -g -Wall -Wextra -Iinclude/ -Isrc/ -I$(DIRSDL)/include -I$(DIRSDL)/include/SDL -I/usr/local/include -I/usr/local/include/SDL -I/usr/include/SDL
+LDFLAGS = -lm -lSDL -lSDLmain -lSDL_draw -L$(DIRSDL)/lib -L/usr/local/lib  -lX11
 CC = gcc
 
 EXEC = main vGraphique
